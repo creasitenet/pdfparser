@@ -217,8 +217,9 @@ class Font extends PDFObject
             if (preg_match_all('/beginbfrange(?P<sections>.*?)endbfrange/s', $content, $matches)) {
                 foreach ($matches['sections'] as $section) {
                     // Support for : <srcCode1> <srcCode2> <dstString>
-                    $regexp = '/<(?P<from>[0-9A-F]+)> *<(?P<to>[0-9A-F]+)> *<(?P<offset>[0-9A-F]+)>[ \r\n]+/is';
-
+                    // $regexp = '/<(?P<from>[0-9A-F]+)> *<(?P<to>[0-9A-F]+)> *<(?P<offset>[0-9A-F]+)>[ \r\n]+/is';
+                    $regexp = '/<(?P<from>[0-9A-F]+)> *<(?P<to>[0-9A-F]+)> *<(?P<offset>[0-9A-F]+)>? *[\r\n]+/is';
+                    
                     preg_match_all($regexp, $section, $matches);
 
                     foreach ($matches['from'] as $key => $from) {
